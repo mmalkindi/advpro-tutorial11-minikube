@@ -1,4 +1,6 @@
-# Reflection: Hello Minikube
+# Module 11 - Deployment on Kubernetes
+
+## Reflection: Hello Minikube
 
 > Q: Compare the application logs before and after you exposed it as a Service.
 > Try to open the app several times while the proxy into the Service is running.
@@ -25,3 +27,23 @@ In Kubernetes, namespaces provide a way to organize groups of resouces and isola
 
 When running `kubectl get` with `-n kube-system` option, the output did not list the pods/services that we have created during the tutorial
 because those were created under the `default` namespace. The command will run on the `default` namespace unless it's specified (like in the latter invocation).
+
+## Reflection: Rolling Update & Kubernetes Manifest File
+
+> Q: What is the difference between Rolling Update and Recreate deployment strategy?
+
+A: ...
+
+> Q: Try deploying the Spring Petclinic REST using Recreate deployment strategy and document your attempt
+
+A: ...
+
+> Q: Prepare different manifest files for executing Recreate deployment strategy.
+
+A: ...
+
+> Q: What do you think are the benefits of using Kubernetes manifest files?
+> Recall your experience in deploying the app manually and compare it to your experience when deploying the same app
+> by applying the manifest files (i.e., invoking `kubectl apply -f` command) to the cluster.
+
+A: ...
