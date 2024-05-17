@@ -32,18 +32,42 @@ because those were created under the `default` namespace. The command will run o
 
 > Q: What is the difference between Rolling Update and Recreate deployment strategy?
 
-A: ...
+A:
+
+1. Rolling Update: New deployment is applied to new pods while also killing existing pods in a step-by-step manner (hence the name Rolling update).
+This allows the app to have no downtime because there will always available pods to use even if it's not up to date with the latest revision.
+2. Recreate: All existing pods are killed before new ones are created. This causes the app to have some downtime (when zero pods are fully running yet),
+but guarantees that every access to the app uses the latest revision.
 
 > Q: Try deploying the Spring Petclinic REST using Recreate deployment strategy and document your attempt
 
-A: ...
+A:
+
+Changing the manifest file to use `.spec.strategy.type==Recreate` instead of `.spec.strategy.type==RollingUpdate`
+
+![Change manifest file](/img/change_manifest_file.png)
+
+Delete and Start Minikube to ensure a fresh slate
+
+![Delete start minikube](/img/delete_start_minikube.png)
+
+Apply the edited deployment and service manifest files
+
+![Apply edited manifest file](/img/apply_manifest.png)
+
+Set image to use version 3.0.2 and monitor the deployment rollout
+
+![Monitor rollout logs](/img/rollout_logs.png)
+![Monitor pods status](/img/get_pods.png)
 
 > Q: Prepare different manifest files for executing Recreate deployment strategy.
 
-A: ...
+![Recreate manifest files](/img/recreate_manifest_files.png)
 
 > Q: What do you think are the benefits of using Kubernetes manifest files?
 > Recall your experience in deploying the app manually and compare it to your experience when deploying the same app
 > by applying the manifest files (i.e., invoking `kubectl apply -f` command) to the cluster.
 
-A: ...
+A: Using Kubernetes manifest files makes it easy to implement a specific configuration with one single command instead of redoing all of the deployment commands.
+This is especially important in a deployment environment where we will want to automate the process via GitHub Actions or similar CI/CD pipelines.
+The manifest file will also be able to participate in the project's Version Control System (e.g: git) which will help with documentation and tracing changes.
